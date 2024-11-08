@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<h1>CarRent'e Hoş Geldiniz</h1>
+<h3>Hizmetimizdeki Araçlar:</h3>
+
+<div class="row">
+    @foreach (var car in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="~/images/cars/@car.PhotoPath" class="card-img-top" alt="Araç Resmi">
+                <div class="card-body">
+                    <h5 class="card-title">Araç Markası: @car.Make </h5>
+                    <h6 class="card-text">Araç Modeli: @car.Model </h6>
+                    <h6 class="card-text">Günlük Kiralama Ücreti: @car.DailyRate грн</h6>
+
+                    <a href="@Url.Action("Details", "Cars", new { id = car.Id })" class="btn btn-primary">Detaylar</a>
+
+                    <a href="@Url.Action("ViewCart", "Cart")" class="btn btn-success">Sepetiniz</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

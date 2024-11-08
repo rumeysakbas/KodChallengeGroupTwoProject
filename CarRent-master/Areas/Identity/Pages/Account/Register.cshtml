@@ -1,0 +1,57 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Kayıt";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Yeni bir hesap oluşturun.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.FirstName" class="form-control" placeholder="FirstName" />
+                <label asp-for="Input.FirstName">Ad</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.MiddleName" class="form-control" placeholder="MiddleName" />
+                <label asp-for="Input.MiddleName">İkinci Ad</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.LastName" class="form-control" placeholder="LastName" />
+                <label asp-for="Input.LastName">Soyad</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Address" class="form-control" placeholder="Address" />
+                <label asp-for="Input.Address">Adres</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Phone" class="form-control" placeholder="Phone" />
+                <label asp-for="Input.Phone">Telefon Numarası</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" placeholder="Email" />
+                <label asp-for="Input.Email">E-posta</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" placeholder="Password" type="password" />
+                <label asp-for="Input.Password">Şifre</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="ConfirmPassword" type="password" />
+                <label asp-for="Input.ConfirmPassword">Şifreyi Onayla</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+}

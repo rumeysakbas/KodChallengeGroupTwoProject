@@ -1,0 +1,42 @@
+﻿@model List<CartItem>
+
+<h2>Sipariş Geçmişi</h2>
+
+@if (!Model.Any())
+{
+    <p>Hiçbir sipariş bulunamadı</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Kullanıcı</th>
+                <th>Marka</th>
+                <th>Model</th>
+                <th>Başlangıç Tarihi</th>
+                <th>Bitiş Tarihi</th>
+                <th>Günlük Tarife</th>
+                <th>% İndirim</th>
+                <th>Cezai Ücret</th>
+                <th>Toplam Fiyat (₴)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.UserId</td>
+                    <td>@(item.Car != null ? item.Car.Make : "Bilgi yok")</td>
+                    <td>@(item.Car != null ? item.Car.Model : "Bilgi yok")</td>
+                    <td>@item.StartDate.ToShortDateString()</td>
+                    <td>@item.EndDate.ToShortDateString()</td>
+                    <td>@item.DailyRate</td>
+                    <td>@item.Discount%</td>
+                    <td>@item.Penalty</td>
+                    <td>@item.TotalPrice</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

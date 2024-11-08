@@ -1,0 +1,50 @@
+﻿@model List<CartItem>
+
+<h2>Sepet</h2>
+
+@if (!Model.Any())
+{
+    <p>Sepetiniz boş</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Araç</th>
+                <th>Başlangıç Tarihi</th>
+                <th>Bitiş Tarihi</th>
+                <th>Günlük Tarife</th>
+                <th>İndirim</th>
+                <th>Cezai Ücret</th>
+                <th>Toplam Fiyat</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CarId</td>
+                    <td>
+                        <input type="date" name="startDate" value="@item.StartDate.ToString("yyyy-MM-dd")" />
+                    </td>
+                    <td>
+                        <input type="date" name="endDate" value="@item.EndDate.ToString("yyyy-MM-dd")" />
+                    </td>
+                    <td>@item.DailyRate</td>
+                    <td>@item.Discount</td>
+                    <td>@item.Penalty</td>
+                    <td>@item.TotalPrice</td>
+                    <td>
+                        <a href="@Url.Action("RemoveFromCart", "Cart", new { id = item.Id })">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <form method="post" action="@Url.Action("UpdateCart", "Cart")">
+        <button type="submit">Satın Almayı Onayla</button>
+    </form>
+}
